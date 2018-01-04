@@ -1,0 +1,104 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 PRESERVE8
+    2 00000000                 AREA             RESET,CODE,READONLY
+    3 00000000                 THUMB
+    4 00000000                 IMPORT           ||Image$$ARM_LIB_STACKHEAP$$ZI$
+$Limit||
+    5 00000000                 IMPORT           osPendSV
+    6 00000000                 EXPORT           _BootVectors
+    7 00000000                 EXPORT           osResetVector
+    8 00000000         _BootVectors
+    9 00000000 00000000        DCD              ||Image$$ARM_LIB_STACKHEAP$$ZI$
+$Limit||
+   10 00000004 00000000        DCD              osResetVector
+   11 00000008         osResetVector
+   12 00000008 F8DF 0010       LDR.W            R0, =0xE000ED88
+   13 0000000C 6801            LDR              R1,[R0]
+   14 0000000E F441 0170       ORR              R1,R1,#(0xF<<20)
+   15 00000012 6001            STR              R1,[R0]
+   16 00000014 B672            CPSID            I
+   17 00000016         
+   18 00000016                 IMPORT           __main
+   19 00000016 4802            LDR              R0,=__main
+   20 00000018 4700            BX               R0
+   21 0000001A         
+   22 0000001A 00 00           ALIGN
+   23 0000001C                 END
+              E000ED88 
+              00000000 
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M4.fp --apcs=int
+erwork --depend=.\objects\los_vendor.d -o.\objects\los_vendor.o -ID:\openliteos
+\project\RTE -IC:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include -IC:\Keil_v5\A
+RM\PACK\Keil\STM32F4xx_DFP\2.11.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include --p
+redefine="__UVISION_VERSION SETA 518" --predefine="_RTE_ SETA 1" --predefine="S
+TM32F429xx SETA 1" --list=.\listings\los_vendor.lst ..\platform\cpu\los_vendor.
+s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+RESET 00000000
+
+Symbol: RESET
+   Definitions
+      At line 2 in file ..\platform\cpu\los_vendor.s
+   Uses
+      None
+Comment: RESET unused
+_BootVectors 00000000
+
+Symbol: _BootVectors
+   Definitions
+      At line 8 in file ..\platform\cpu\los_vendor.s
+   Uses
+      At line 6 in file ..\platform\cpu\los_vendor.s
+Comment: _BootVectors used once
+osResetVector 00000008
+
+Symbol: osResetVector
+   Definitions
+      At line 11 in file ..\platform\cpu\los_vendor.s
+   Uses
+      At line 7 in file ..\platform\cpu\los_vendor.s
+      At line 10 in file ..\platform\cpu\los_vendor.s
+
+3 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+External symbols
+
+__main 00000000
+
+Symbol: __main
+   Definitions
+      At line 18 in file ..\platform\cpu\los_vendor.s
+   Uses
+      At line 19 in file ..\platform\cpu\los_vendor.s
+Comment: __main used once
+osPendSV 00000000
+
+Symbol: osPendSV
+   Definitions
+      At line 5 in file ..\platform\cpu\los_vendor.s
+   Uses
+      None
+Comment: osPendSV unused
+|Image$$ARM_LIB_STACKHEAP$$ZI$$Limit| 00000000
+
+Symbol: |Image$$ARM_LIB_STACKHEAP$$ZI$$Limit|
+   Definitions
+      At line 4 in file ..\platform\cpu\los_vendor.s
+   Uses
+      At line 9 in file ..\platform\cpu\los_vendor.s
+Comment: |Image$$ARM_LIB_STACKHEAP$$ZI$$Limit| used once
+3 symbols
+342 symbols in table
